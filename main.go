@@ -14,7 +14,7 @@ func main() {
 	//登录
 	engine.POST("/jsb/login",handler.LoginHandler)
 	engine.POST("/jsb/register",handler.RegisterHandler)
-	engine.POST("/jsb/game-start",handler.GameStartHandler)
+	engine.POST("/jsb/send-message",handler.GameStartHandler)
 	engine.Run("localhost:8080")
 }
 
