@@ -14,7 +14,9 @@ func main() {
 	//登录
 	engine.POST("/jsb/login",handler.LoginHandler)
 	engine.POST("/jsb/register",handler.RegisterHandler)
-	engine.GET("/jsb/send-message",handler.WsHandler)
+	//构建Websocket server
+	wsServer := handler.NewWsServer()
+	engine.GET("/jsb/send-message",wsServer.WsHandler)
 	engine.Run("localhost:8080")
 }
 

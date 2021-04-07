@@ -4,13 +4,31 @@ import (
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/gorilla/websocket"
+	"jsb/util/my_token"
 	"log"
 	"net/http"
+	"sync"
 	"time"
 )
 
-//
-func WsHandler( ctx *gin.Context) {
+
+type WsServer struct {
+	//websocket 的房间
+	WsRooms map[int]*WsRoom
+	//websocket User 池
+	WsUsers map[int64]*WsUser
+	//读写锁
+	LockWsUsers sync.RWMutex
+}
+
+func NewWsServer()*WsServer  {
+	return &WsServer{
+		WsRooms: make(map[int]*WsRoom),
+		WsUsers: make(map[int64]*WsUser),
+	}
+}
+//进来一个
+func (this *WsServer)WsHandler( ctx *gin.Context) {
 	//w http.ResponseWriter, r *http.Request
 	w := ctx.Writer
 	r := ctx.Request
@@ -31,32 +49,20 @@ func WsHandler( ctx *gin.Context) {
 	if err != nil {
 		log.Printf("string=%s\n", "升级连接err")
 	}
-	fmt.Printf("conn.RemoteAddr()=%#v\n", conn.RemoteAddr().String())
-	//使用 conn 读取和写入内容
-	go ReadFromWS(conn)
-	go WriteToWS(conn)
+	fmt.Printf("新的websocket=%#v\n", conn.RemoteAddr().String())
+	//1.创建一个新的 User
+	token := ctx.GetHeader("token")
+	tokenUser, err := my_token.GetUser(token)
+	wsUser := NewWsUser(conn)
+	//放入池子中
+	this.LockWsUsers.Lock()
+	this.WsUsers[tokenUser.UserId] = wsUser
+	this.LockWsUsers.Unlock()
+	//开始监听写入
+	go wsUser.OnWrite()
+	//监听读取客户端信息
+	go wsUser.OnRead()
+
 }
 
-//读取消息并打印
-func ReadFromWS(conn *websocket.Conn) {
-	for {
-		message, bytes, err := conn.ReadMessage()
-		//断线不自动重新连接
-		if err != nil {
-			conn.Close()
-			return
-		}
-		fmt.Printf("type=%#v\n", message)
-		fmt.Printf("message=%s\n", string(bytes))
 
-	}
-}
-func WriteToWS(conn *websocket.Conn) {
-	for  {
-		select {
-		case <-time.After(time.Second * 10):
-			conn.WriteMessage(1,[]byte("服务端发送信息"))
-		}
-
-	}
-}
