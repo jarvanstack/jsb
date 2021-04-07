@@ -41,8 +41,10 @@
 
 ### UI 图
 
+![img.png](README.assets/img2.png)
+
+
 ![image-20210404223042061](README.assets/image-20210404223042061.png)
 
-![image-20210404223106271](README.assets/image-20210404223106271.png)
 
 ![image-20210404223121055](README.assets/image-20210404223121055.png)
