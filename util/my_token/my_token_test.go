@@ -6,15 +6,8 @@ import (
 )
 
 func TestToken(t *testing.T) {
-	token, err := GetToken(13414321)
-	if err != nil {
-		fmt.Printf("err=%#v\n", err)
-	}
-	fmt.Printf("string=%s\n", token)
-	parseToken, obj, err := ParseToken(token)
-	fmt.Printf("parseToken=%#v\n", parseToken)
-	fmt.Printf("obj=%#v\n", obj.UserId)
-	if err != nil {
-		fmt.Printf("string=%s\n", "parse token")
-	}
+ 	token := "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VyIjp7InVzZXJfaWQiOjEzMjQxNCwidXNlcm5hbWUiOiJhZG1pbiIsImVtYWlsIjoiYWRtaW5AYm1mdC5jb20iLCJuaWNrbmFtZSI6IumYv-aWh-aWh-WQliIsImF2YXRhciI6Im5vbmUifSwiZXhwIjoxNjE4NDU3NDM4LCJpYXQiOjE2MTc4NTI2MzgsImlzcyI6ImZ0Y2xvdWQiLCJzdWIiOiJ1c2VyIG15X3Rva2VuIn0.Q0-lvr0CTXsF2hVZly0z8l5OBz33RwkpsYmF8swQw5A"
+	user, err := GetUser(token)
+	fmt.Printf("user=%#v\n", user)
+	fmt.Printf("err=%#v\n", err)
 }

@@ -14,6 +14,7 @@ import (
 
 
 func LoginHandler( ctx *gin.Context)  {
+
 	//拿到账号和密码
 	var login ato.Login
 	ctx.ShouldBindJSON(&login)
@@ -47,5 +48,6 @@ func LoginHandler( ctx *gin.Context)  {
 		fmt.Printf("string=%s\n", "token err")
 	}
 	ctx.Header("token",token)
+	fmt.Printf("发放token=%#v\n", token)
 	ctx.Writer.Write(my_restful.Ok(user))
 }

@@ -2,6 +2,8 @@ package my_gorm
 
 import (
 	"fmt"
+	"jsb/model/entity"
+	"jsb/util/snowflake"
 	"testing"
 )
 type Result struct {
@@ -43,4 +45,23 @@ func Test原始SQL(t *testing.T) {
 	`
 	DB.Raw(sql,"admin","admin").Scan(&user)
 	fmt.Printf("user=%#v\n", user)
+}
+func TestCreateSysResult(t *testing.T) {
+	err := DB.AutoMigrate(&entity.SysResult{})
+	if err != nil {
+		fmt.Printf("err=%#v\n", err)
+	}
+}
+func TestInsertResult(t *testing.T) {
+	sql := `
+	INSERT INTO jsb.sys_results 
+	( id, a_user_id, b_user_id, a_result, b_result, round_num )
+	VALUES
+	(?,?1,'?','?','?',?)
+	`
+	id := snowflake.NextId()
+
+	s := DB.Exec(sql, id, 1, 1, 1, 1, 1).Error
+	fmt.Printf("s=%#v\n", s)
+
 }
