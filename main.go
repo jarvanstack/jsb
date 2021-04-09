@@ -4,6 +4,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"jsb/handler"
 	"jsb/middleware"
+	"jsb/util/my_restful"
 )
 
 
@@ -17,6 +18,9 @@ func main() {
 	//构建Websocket server
 	wsServer := handler.NewWsServer()
 	engine.GET("/jsb/send-message",wsServer.WsHandler)
+	engine.GET("/jsb/test", func(ctx *gin.Context) {
+		ctx.Writer.Write(my_restful.Ok("go测试"))
+	})
 	engine.Run("localhost:8080")
 }
 
