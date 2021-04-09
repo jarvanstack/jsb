@@ -3,6 +3,8 @@
 
 [前端代码https://github.com/dengjiawen8955/jsb-uniapp.git](https://github.com/dengjiawen8955/jsb-uniapp.git)
 
+客户端下载地址[点击下载](README.assets/jsb即时通信102.apk)
+
 后端使用 go
 
 * 登录使用 HTTP 然后
