@@ -1,5 +1,5 @@
 #添加JAVA启动的必要镜像
-FROM java:8
+FROM centos
 
 
 #【配置时区统一】
@@ -8,7 +8,7 @@ RUN /bin/cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && echo 'Asia/Shang
 #设置开放端口号
 
 #添加jar包，存放路径以及重命名
-ADD  ./main  //main
+ADD  ./main  /main
 
 
 #添加进入docker容器后的目录

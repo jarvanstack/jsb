@@ -48,4 +48,6 @@
 
 
 ![image-20210404223121055](README.assets/image-20210404223121055.png)
-
+```bash
+curl -H "Content-Type: application/json" -X POST  --data '{"username":"admin","password":"admin"}' http://127.0.0.1:9006/jsb/login
+```

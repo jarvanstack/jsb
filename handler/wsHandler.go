@@ -66,6 +66,8 @@ func (this *WsServer)WsHandler( ctx *gin.Context) {
 		log.Printf("string=%s\n", "token解析失败")
 		_ = conn.WriteMessage(1, []byte("登录失效,请输入「dl」重新登录"))
 		return
+	}else {
+		_ = conn.WriteMessage(1, []byte("websocket连接成功"))
 	}
 	//判断这个user是否存在
 	wsUser := this.WsUsers[tokenUser.UserId]
