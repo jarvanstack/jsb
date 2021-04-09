@@ -23,6 +23,6 @@ func main() {
 	engine.GET("/jsb/test", func(ctx *gin.Context) {
 		ctx.Writer.Write(my_restful.Ok("go测试"))
 	})
-	engine.Run("localhost:8080")
+	engine.Run("0.0.0.0:8080")
 }
 
