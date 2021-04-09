@@ -1,6 +1,7 @@
 package main
 
 import (
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"jsb/handler"
 	"jsb/middleware"
@@ -12,6 +13,7 @@ func main() {
 	engine := gin.Default()
 	//中间件
 	engine.Use(middleware.HeaderMiddlerware)
+	engine.Use(cors.Default())
 	//登录
 	engine.POST("/jsb/login",handler.LoginHandler)
 	engine.POST("/jsb/register",handler.RegisterHandler)
