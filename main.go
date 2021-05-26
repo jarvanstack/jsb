@@ -8,8 +8,10 @@ import (
 	"jsb/util/my_restful"
 )
 
-
 func main() {
+}
+//export start
+func start(){
 	engine := gin.Default()
 	//中间件
 	engine.Use(middleware.HeaderMiddlerware)

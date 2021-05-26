@@ -10,7 +10,6 @@ RUN /bin/cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && echo 'Asia/Shang
 #添加jar包，存放路径以及重命名
 ADD  ./main  /main
 
-
 #添加进入docker容器后的目录
 WORKDIR   /
 

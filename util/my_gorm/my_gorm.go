@@ -21,7 +21,7 @@ func init()  {
 		},
 	)
 	DB, _ = gorm.Open(mysql.New(mysql.Config{
-		DSN: "root:612001@tcp(81.71.89.149:3306)/jsb?charset=utf8&parseTime=True&loc=Local", // DSN data source name
+		DSN: "root:djv666666.@tcp(gz-cynosdbmysql-grp-9jxhbwl5.sql.tencentcdb.com:22757)/jsb?charset=utf8&parseTime=True&loc=Local", // DSN data source name
 		DefaultStringSize: 256, // string 类型字段的默认长度
 		DisableDatetimePrecision: true, // 禁用 datetime 精度，MySQL 5.6 之前的数据库不支持
 		DontSupportRenameIndex: true, // 重命名索引时采用删除并新建的方式，MySQL 5.7 之前的数据库和 MariaDB 不支持重命名索引

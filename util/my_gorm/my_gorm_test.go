@@ -59,7 +59,7 @@ func TestInsertResult(t *testing.T) {
 	INSERT INTO jsb.sys_results 
 	( id, a_user_id, b_user_id, a_result, b_result, round_num )
 	VALUES
-	(?,?1,'?','?','?',?)
+	(?,?,'?','?','?',?)
 	`
 	id := snowflake.NextId()
 
